@@ -10,6 +10,8 @@ import {setStorageArrayData} from '../../utils/storage';
 import {getNormalizeCountryNames} from '../../utils/normalizers';
 
 import {CitiesProps, CitiesStored} from '../../shared/interfaces';
+import {useNavigation} from '@react-navigation/native';
+import {weatherRouteStack} from '../../navigators/NavigationRoutes';
 
 interface SearchCardProps {
   data?: CitiesProps;
@@ -17,17 +19,27 @@ interface SearchCardProps {
 }
 
 const SearchCard: React.FC<SearchCardProps> = ({data, citiesDataStored}) => {
-  const addNewCityHandler = () => {
+  const navigation = useNavigation<weatherRouteStack>();
+
+  const newCityHandler = async () => {
     if (!data) {
       return;
     }
-
+    const numberLat = Number(data?.latitude.toFixed(4));
+    const numberLon = Number(data?.longitude.toFixed(4));
     const payload = {
-      latitude: data?.latitude,
-      longitude: data?.longitude,
+      name: data?.name,
+      latitude: numberLat,
+      longitude: numberLon,
       cityID: data?.id,
     };
-    setStorageArrayData('@cities', payload);
+
+    try {
+      await setStorageArrayData('@cities', payload);
+      navigation.navigate('Cities', {shouldUpdateList: true});
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const alreadyCityAdded = useMemo(() => {
@@ -52,7 +64,7 @@ const SearchCard: React.FC<SearchCardProps> = ({data, citiesDataStored}) => {
         </Row>
         <Row width={1} mt="2px">
           <Text fontSize={14} color="black" letterSpacing={0.25}>
-            {getNormalizeCountryNames(data?.countryCode)}
+            {data?.region} - {getNormalizeCountryNames(data?.countryCode)}
           </Text>
         </Row>
       </Column>
@@ -72,7 +84,7 @@ const SearchCard: React.FC<SearchCardProps> = ({data, citiesDataStored}) => {
             width={120}
             height={40}
             backgroundColor="transparent"
-            onPress={addNewCityHandler}>
+            onPress={newCityHandler}>
             <Text
               fontSize={13}
               color="cerulean"

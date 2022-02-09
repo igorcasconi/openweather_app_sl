@@ -8,6 +8,8 @@ declare module 'styled-components' {
       silver: string;
       extraLightGray: string;
       cerulean: string;
+      orange: string;
+      redRibbon: string;
     };
   }
 }

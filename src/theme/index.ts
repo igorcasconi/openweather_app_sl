@@ -7,5 +7,7 @@ export default {
     silver: '#C1C1C1',
     extraLightGray: '#EEEEEE',
     cerulean: '#0078be',
+    orange: '#f28200',
+    redRibbon: '#ed0952',
   },
 };
