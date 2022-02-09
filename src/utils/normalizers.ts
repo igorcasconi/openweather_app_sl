@@ -11,3 +11,6 @@ export const getNormalizeCountryNames = (countryCode?: string) => {
 
   return countryNormalized?.name;
 };
+
+export const capitalizeFirstLetter = (text: string) =>
+  text.charAt(0).toUpperCase() + text.slice(1);

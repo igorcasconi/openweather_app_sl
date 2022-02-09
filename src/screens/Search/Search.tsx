@@ -3,6 +3,7 @@ import {ActivityIndicator, FlatList} from 'react-native';
 import {useMutation} from 'react-query';
 import {useDebouncedCallback} from 'use-debounce';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useNavigation} from '@react-navigation/native';
 
 import {Button, Column, Input, Row, SearchCard, Text} from '../../components';
 import {getCitiesByName} from '../../services';
@@ -17,6 +18,7 @@ const Search: React.FC = () => {
   const [citiesDataStored, setCitiesStored] = useState<
     CitiesStored[] | null | undefined
   >(null);
+  const navigation = useNavigation();
 
   const {
     mutateAsync: mutateCities,
@@ -65,7 +67,11 @@ const Search: React.FC = () => {
         backgroundColor="azure"
         px={10}
         alignItems="center">
-        <Button width={40} height={40} backgroundColor="azure">
+        <Button
+          width={40}
+          height={40}
+          backgroundColor="azure"
+          onPress={() => navigation.goBack()}>
           <MaterialCommunityIcons name="close" color="white" size={20} />
         </Button>
         <Input
@@ -74,7 +80,7 @@ const Search: React.FC = () => {
           placeholderTextColor={getThemeColors('extraLightGray')}
         />
       </Row>
-      <Column width={1} height="100%" backgroundColor="gray" py={16} px={16}>
+      <Column width={1} height="100%" backgroundColor="gray" p={16}>
         {isFindingCity ? (
           <Row
             width={1}

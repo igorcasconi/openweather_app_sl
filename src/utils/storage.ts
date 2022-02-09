@@ -30,3 +30,11 @@ export const setDataStorage = async (key: string, value: any) => {
     console.log(err);
   }
 };
+
+export const clearDataStorage = async (key: string) => {
+  try {
+    return await AsyncStorage.removeItem(key);
+  } catch (err) {
+    console.log(err);
+  }
+};

@@ -21,4 +21,5 @@ export interface CitiesStored {
   cityID: number;
   latitude: number;
   longitude: number;
+  name: string;
 }
