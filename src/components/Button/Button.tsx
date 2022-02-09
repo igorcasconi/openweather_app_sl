@@ -29,7 +29,7 @@ const ButtonComponent: React.FC<Props> = ({
   ...props
 }) => (
   <Button disabled={isLoading || disabled} {...props}>
-    {isLoading ? <Loader /> : !text ? children : <Text>{text}</Text>}
+    {!text ? children : <Text>{text}</Text>}
   </Button>
 );
 
