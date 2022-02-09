@@ -12,13 +12,29 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		18796C821EDA43BAA78502FB /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCE303A1858F46DE8B3C1782 /* Roboto-Light.ttf */; };
+		1B37CEB05C7A418BA23EC86B /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6DDF54FA4BD640B98CA1DE3C /* Entypo.ttf */; };
+		321038833A4044BAB71A2DAB /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A420527E08A546FA91ECC869 /* FontAwesome5_Brands.ttf */; };
+		37F24A0D9ACB4738A91C996C /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D07623A601CD491E8EDA3F56 /* Foundation.ttf */; };
+		3ECA785493C740CD82B31B9E /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05A1645454044AA68C319501 /* FontAwesome.ttf */; };
+		516ED3204EEA44FEB1E9D947 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B2F1418A3D544A0A3E5BDF1 /* Octicons.ttf */; };
+		5C9C25B27CE64D2C9102ADD2 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 473BB1B1C8EF40D0B5BDF114 /* SimpleLineIcons.ttf */; };
 		6172F2D35A4C3AA820D92908 /* libPods-openWeatherApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6423831EA8574132BED9D8CC /* libPods-openWeatherApp.a */; };
+		6AC513B8343F4AAD99F05939 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E03D67632ED48C4AAECB6E7 /* FontAwesome5_Solid.ttf */; };
+		7E3BF30164F9471D828B79E4 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D195095B5EEF4035A7426BEF /* FontAwesome5_Regular.ttf */; };
 		7EF68E3733C33B6898317E18 /* libPods-openWeatherApp-openWeatherAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFE59519B596E51CEFDCCC0 /* libPods-openWeatherApp-openWeatherAppTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		83764430EFE84B17B3B827D0 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC76D71B2221471385C381AD /* Feather.ttf */; };
+		868B8BE80B5F433497F7F073 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBEE460F43A4416CB6EC7E8A /* EvilIcons.ttf */; };
 		944F6AB880FE47C8AB5EA522 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CACA9CB0B98445B8AB4F00DB /* Roboto-Bold.ttf */; };
 		A7698D76C8824865A985E6A2 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A6A536638F0453A998468D8 /* Roboto-Black.ttf */; };
+		C33D7BC8C7D54B7FA4F4657E /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CD67D421CA84A01A6816A2A /* Zocial.ttf */; };
+		D93B7718FA8E44EA8B8E6B72 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D6C83FCAC2B4370A91E1EC3 /* Fontisto.ttf */; };
+		DC333A03F7A24E97817CFF87 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA2570B07D514985A71D8622 /* Ionicons.ttf */; };
+		E24B2179A41F40E18CE0B321 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F606A4BAF5349ECAB7148E4 /* AntDesign.ttf */; };
 		E4CE4FBAC4B7402ABDA51996 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEE92E89B004EC18CF70129 /* Roboto-Medium.ttf */; };
 		E6494A9ACE13416FB523ABB9 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9AB2B200718405D9FB723E1 /* Roboto-Regular.ttf */; };
+		FB3BBCB877484C97BE94DFA7 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E195367C8EAE46D29FFDEBE7 /* MaterialIcons.ttf */; };
+		FBB8596D3B9E46C3BA5DDB90 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA589BA3ABEA42EEB1A5AFDC /* MaterialCommunityIcons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +51,7 @@
 		00E356EE1AD99517003FC87E /* openWeatherAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = openWeatherAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* openWeatherAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = openWeatherAppTests.m; sourceTree = "<group>"; };
+		05A1645454044AA68C319501 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* openWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = openWeatherApp/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = openWeatherApp/AppDelegate.m; sourceTree = "<group>"; };
@@ -43,17 +60,32 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = openWeatherApp/main.m; sourceTree = "<group>"; };
 		1A6A536638F0453A998468D8 /* Roboto-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Black.ttf"; path = "../assets/fonts/Roboto-Black.ttf"; sourceTree = "<group>"; };
 		1D0AE47A65C8663E3B452821 /* Pods-openWeatherApp-openWeatherAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWeatherApp-openWeatherAppTests.release.xcconfig"; path = "Target Support Files/Pods-openWeatherApp-openWeatherAppTests/Pods-openWeatherApp-openWeatherAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		2E03D67632ED48C4AAECB6E7 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		473BB1B1C8EF40D0B5BDF114 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		5F606A4BAF5349ECAB7148E4 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		6423831EA8574132BED9D8CC /* libPods-openWeatherApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-openWeatherApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B2F1418A3D544A0A3E5BDF1 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		6C97AB639B58BBB4B15BBE30 /* Pods-openWeatherApp-openWeatherAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWeatherApp-openWeatherAppTests.debug.xcconfig"; path = "Target Support Files/Pods-openWeatherApp-openWeatherAppTests/Pods-openWeatherApp-openWeatherAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6DDF54FA4BD640B98CA1DE3C /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = openWeatherApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9CD67D421CA84A01A6816A2A /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		9D6C83FCAC2B4370A91E1EC3 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		A420527E08A546FA91ECC869 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		ABFE59519B596E51CEFDCCC0 /* libPods-openWeatherApp-openWeatherAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-openWeatherApp-openWeatherAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC76D71B2221471385C381AD /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		BA589BA3ABEA42EEB1A5AFDC /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		C0A881CF5CF3F2B244570E2A /* Pods-openWeatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWeatherApp.debug.xcconfig"; path = "Target Support Files/Pods-openWeatherApp/Pods-openWeatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CACA9CB0B98445B8AB4F00DB /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		CBEE460F43A4416CB6EC7E8A /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		CCE303A1858F46DE8B3C1782 /* Roboto-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.ttf"; path = "../assets/fonts/Roboto-Light.ttf"; sourceTree = "<group>"; };
 		CEEE92E89B004EC18CF70129 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		D00AAFFCFCFDA5787532823F /* Pods-openWeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWeatherApp.release.xcconfig"; path = "Target Support Files/Pods-openWeatherApp/Pods-openWeatherApp.release.xcconfig"; sourceTree = "<group>"; };
+		D07623A601CD491E8EDA3F56 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		D195095B5EEF4035A7426BEF /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		E195367C8EAE46D29FFDEBE7 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F9AB2B200718405D9FB723E1 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		FA2570B07D514985A71D8622 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +188,22 @@
 				CCE303A1858F46DE8B3C1782 /* Roboto-Light.ttf */,
 				CEEE92E89B004EC18CF70129 /* Roboto-Medium.ttf */,
 				F9AB2B200718405D9FB723E1 /* Roboto-Regular.ttf */,
+				5F606A4BAF5349ECAB7148E4 /* AntDesign.ttf */,
+				6DDF54FA4BD640B98CA1DE3C /* Entypo.ttf */,
+				CBEE460F43A4416CB6EC7E8A /* EvilIcons.ttf */,
+				AC76D71B2221471385C381AD /* Feather.ttf */,
+				05A1645454044AA68C319501 /* FontAwesome.ttf */,
+				A420527E08A546FA91ECC869 /* FontAwesome5_Brands.ttf */,
+				D195095B5EEF4035A7426BEF /* FontAwesome5_Regular.ttf */,
+				2E03D67632ED48C4AAECB6E7 /* FontAwesome5_Solid.ttf */,
+				9D6C83FCAC2B4370A91E1EC3 /* Fontisto.ttf */,
+				D07623A601CD491E8EDA3F56 /* Foundation.ttf */,
+				FA2570B07D514985A71D8622 /* Ionicons.ttf */,
+				BA589BA3ABEA42EEB1A5AFDC /* MaterialCommunityIcons.ttf */,
+				E195367C8EAE46D29FFDEBE7 /* MaterialIcons.ttf */,
+				6B2F1418A3D544A0A3E5BDF1 /* Octicons.ttf */,
+				473BB1B1C8EF40D0B5BDF114 /* SimpleLineIcons.ttf */,
+				9CD67D421CA84A01A6816A2A /* Zocial.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -293,6 +341,22 @@
 				18796C821EDA43BAA78502FB /* Roboto-Light.ttf in Resources */,
 				E4CE4FBAC4B7402ABDA51996 /* Roboto-Medium.ttf in Resources */,
 				E6494A9ACE13416FB523ABB9 /* Roboto-Regular.ttf in Resources */,
+				E24B2179A41F40E18CE0B321 /* AntDesign.ttf in Resources */,
+				1B37CEB05C7A418BA23EC86B /* Entypo.ttf in Resources */,
+				868B8BE80B5F433497F7F073 /* EvilIcons.ttf in Resources */,
+				83764430EFE84B17B3B827D0 /* Feather.ttf in Resources */,
+				3ECA785493C740CD82B31B9E /* FontAwesome.ttf in Resources */,
+				321038833A4044BAB71A2DAB /* FontAwesome5_Brands.ttf in Resources */,
+				7E3BF30164F9471D828B79E4 /* FontAwesome5_Regular.ttf in Resources */,
+				6AC513B8343F4AAD99F05939 /* FontAwesome5_Solid.ttf in Resources */,
+				D93B7718FA8E44EA8B8E6B72 /* Fontisto.ttf in Resources */,
+				37F24A0D9ACB4738A91C996C /* Foundation.ttf in Resources */,
+				DC333A03F7A24E97817CFF87 /* Ionicons.ttf in Resources */,
+				FBB8596D3B9E46C3BA5DDB90 /* MaterialCommunityIcons.ttf in Resources */,
+				FB3BBCB877484C97BE94DFA7 /* MaterialIcons.ttf in Resources */,
+				516ED3204EEA44FEB1E9D947 /* Octicons.ttf in Resources */,
+				5C9C25B27CE64D2C9102ADD2 /* SimpleLineIcons.ttf in Resources */,
+				C33D7BC8C7D54B7FA4F4657E /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

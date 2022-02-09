@@ -1,22 +1,23 @@
 import axios from 'axios';
 import Config from 'react-native-config';
 
-const api = axios.create({
+const apiWeather = axios.create({
   baseURL: Config.API_URL,
 });
 
-api.interceptors.request.use(async ({headers, ...config}) => {
+apiWeather.interceptors.request.use(async ({headers, ...config}) => {
   return {
     ...config,
     headers: {
       ...headers,
+      'Content-Type': 'application/json; charset=UTF-8',
     },
   };
 });
 
-api.interceptors.response.use(
+apiWeather.interceptors.response.use(
   response => response?.data,
   err => Promise.reject(err?.response?.data),
 );
 
-export default api;
+export default apiWeather;

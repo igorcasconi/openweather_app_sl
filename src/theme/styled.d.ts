@@ -5,6 +5,9 @@ declare module 'styled-components' {
       white: string;
       azure: string;
       gray: string;
+      silver: string;
+      extraLightGray: string;
+      cerulean: string;
     };
   }
 }
