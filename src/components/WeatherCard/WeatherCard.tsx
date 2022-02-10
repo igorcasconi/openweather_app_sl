@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {Column} from '../Column';
@@ -11,14 +11,62 @@ import {
 } from '../../utils/normalizers';
 import useColors from '../../hooks/useColors';
 
-import {CurrentWeatherDataProps} from '../../shared/interfaces';
+import {
+  CurrentWeatherDataProps,
+  FavoriteCitiesProps,
+} from '../../shared/interfaces';
+import {Button} from '../Button';
+import {
+  getDataStorage,
+  removeDataStorage,
+  setStorageArrayData,
+} from '../../utils/storage';
 
 interface WeatherCardProps {
+  setClickLike: Dispatch<SetStateAction<boolean>>;
   data?: CurrentWeatherDataProps;
 }
 
-const WeatherCard: React.FC<WeatherCardProps> = ({data}) => {
+const WeatherCard: React.FC<WeatherCardProps> = ({data, setClickLike}) => {
   const getThemeColors = useColors();
+  const [likedCity, setLikeCity] = useState<boolean>(false);
+
+  const likeCityHandler = async (liked: boolean) => {
+    if (!liked) {
+      await removeDataStorage<FavoriteCitiesProps>(
+        '@favorite_cities',
+        data?.id,
+        'cityID',
+      );
+      return setLikeCity(false);
+    }
+    await setStorageArrayData<FavoriteCitiesProps>('@favorite_cities', {
+      cityID: data?.id,
+    });
+    setLikeCity(true);
+    setClickLike(true);
+  };
+
+  const favoriteCitiesHandler = async () => {
+    try {
+      const favoriteCitiesStorage = await getDataStorage<FavoriteCitiesProps[]>(
+        '@favorite_cities',
+      );
+      const foundLikedCity = favoriteCitiesStorage.find(
+        favoriteCity => favoriteCity.cityID === data?.id,
+      );
+      setLikeCity(!!foundLikedCity);
+      setClickLike(!!foundLikedCity);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    favoriteCitiesHandler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Card height={140}>
       <Row justifyContent="space-between">
@@ -55,12 +103,16 @@ const WeatherCard: React.FC<WeatherCardProps> = ({data}) => {
             º
           </Text>
         </Column>
-        <Column mt={-10} mr={16}>
-          <AntDesign
-            name="hearto"
-            color={getThemeColors('redRibbon')}
-            size={25}
-          />
+        <Column mt={-20} height={60} width={60} mr={10}>
+          <Button
+            backgroundColor="transparent"
+            onPress={() => likeCityHandler(!likedCity)}>
+            <AntDesign
+              name={likedCity ? 'heart' : 'hearto'}
+              color={getThemeColors('redRibbon')}
+              size={25}
+            />
+          </Button>
         </Column>
       </Row>
     </Card>

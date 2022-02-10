@@ -23,3 +23,7 @@ export interface CitiesStored {
   longitude: number;
   name: string;
 }
+
+export interface FavoriteCitiesProps {
+  cityID: number;
+}
