@@ -6,7 +6,6 @@ import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {Column, Row, Text, WeatherCard} from '../../components';
 import useColors from '../../hooks/useColors';
 import {getCitiesByDistance} from '../../services';
-import {getDataStorage} from '../../utils/storage';
 import {weatherRouteStack} from '../../navigators/NavigationRoutes';
 
 import {
@@ -16,6 +15,7 @@ import {
 } from '../../shared/interfaces';
 import {RouteStackParamsProps} from '../../shared/types/routes';
 import {setItemToTopArray} from '../../utils/ArraysAndObjects';
+import useDataStorage from '../../hooks/useDataStorage';
 
 const Cities: React.FC = () => {
   const route = useRoute<RouteProp<RouteStackParamsProps, 'Cities'>>();
@@ -23,11 +23,14 @@ const Cities: React.FC = () => {
   const [weatherCities, setWeatherCities] = useState<CurrentWeatherDataProps[]>(
     [],
   );
-  const [citiesRegistered, setCities] = useState<CitiesStored[] | null>(null);
   const [isClickedLike, setClickLike] = useState<boolean>(false);
   const {mutateAsync: mutateWeatherCities, isLoading: isGettingWeather} =
     useMutation(getCitiesByDistance);
   const getThemeColors = useColors();
+  const {favoriteCities, citiesAdded} = useDataStorage(
+    isClickedLike,
+    route.params?.shouldUpdateList,
+  );
 
   const clearParams = () => {
     navigation.setParams({shouldUpdateList: false});
@@ -65,15 +68,6 @@ const Cities: React.FC = () => {
     }
   };
 
-  const getCitiesStored = async (): Promise<void> => {
-    try {
-      const cities = await getDataStorage<CitiesStored[]>('@cities');
-      setCities(cities);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const reorderCitiesByLike = async (
     favoriteCitiesData?: FavoriteCitiesProps[],
   ) => {
@@ -92,46 +86,27 @@ const Cities: React.FC = () => {
     setClickLike(false);
   };
 
-  const favoriteCitiesHandler = async () => {
-    if (!isClickedLike) {
+  useEffect(() => {
+    if (!citiesAdded) {
       return;
     }
 
-    try {
-      const favoriteCitiesStorage = await getDataStorage<FavoriteCitiesProps[]>(
-        '@favorite_cities',
-      );
-      reorderCitiesByLike(favoriteCitiesStorage);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+    citiesAdded.forEach(city => getWeatherCities(city));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [citiesAdded]);
 
   useEffect(() => {
-    if (!citiesRegistered) {
+    if (!favoriteCities) {
       return;
     }
 
-    citiesRegistered.forEach(city => getWeatherCities(city));
+    reorderCitiesByLike(favoriteCities);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [citiesRegistered]);
+  }, [favoriteCities]);
 
   const renderWeatherCity = ({item}: {item: CurrentWeatherDataProps}) => (
     <WeatherCard data={item} setClickLike={setClickLike} />
   );
-
-  useEffect(() => {
-    getCitiesStored();
-  }, [route.params?.shouldUpdateList]);
-
-  useEffect(() => {
-    if (!isClickedLike) {
-      return;
-    }
-
-    favoriteCitiesHandler();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isClickedLike]);
 
   if (isGettingWeather) {
     return (

@@ -16,11 +16,8 @@ import {
   FavoriteCitiesProps,
 } from '../../shared/interfaces';
 import {Button} from '../Button';
-import {
-  getDataStorage,
-  removeDataStorage,
-  setStorageArrayData,
-} from '../../utils/storage';
+import {removeDataStorage, setStorageArrayData} from '../../utils/storage';
+import useDataStorage from '../../hooks/useDataStorage';
 
 interface WeatherCardProps {
   setClickLike: Dispatch<SetStateAction<boolean>>;
@@ -30,6 +27,8 @@ interface WeatherCardProps {
 const WeatherCard: React.FC<WeatherCardProps> = ({data, setClickLike}) => {
   const getThemeColors = useColors();
   const [likedCity, setLikeCity] = useState<boolean>(false);
+  const [initialLoadFavorite, setLoadFavorite] = useState<boolean>(true);
+  const {favoriteCities} = useDataStorage(initialLoadFavorite);
 
   const likeCityHandler = async (liked: boolean) => {
     if (!liked) {
@@ -38,6 +37,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({data, setClickLike}) => {
         data?.id,
         'cityID',
       );
+      setClickLike(true);
       return setLikeCity(false);
     }
     await setStorageArrayData<FavoriteCitiesProps>('@favorite_cities', {
@@ -48,24 +48,21 @@ const WeatherCard: React.FC<WeatherCardProps> = ({data, setClickLike}) => {
   };
 
   const favoriteCitiesHandler = async () => {
-    try {
-      const favoriteCitiesStorage = await getDataStorage<FavoriteCitiesProps[]>(
-        '@favorite_cities',
-      );
-      const foundLikedCity = favoriteCitiesStorage.find(
-        favoriteCity => favoriteCity.cityID === data?.id,
-      );
-      setLikeCity(!!foundLikedCity);
-      setClickLike(!!foundLikedCity);
-    } catch (err) {
-      console.log(err);
-    }
+    const foundLikedCity = favoriteCities.find(
+      favoriteCity => favoriteCity.cityID === data?.id,
+    );
+    setLikeCity(!!foundLikedCity);
+    setClickLike(!!foundLikedCity);
+    setLoadFavorite(false);
   };
 
   useEffect(() => {
+    if (!favoriteCities.length) {
+      return;
+    }
     favoriteCitiesHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [favoriteCities]);
 
   return (
     <Card height={140}>

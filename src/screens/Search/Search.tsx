@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {ActivityIndicator, FlatList} from 'react-native';
 import {useMutation} from 'react-query';
 import {useDebouncedCallback} from 'use-debounce';
@@ -9,16 +9,14 @@ import {Button, Column, Input, Row, SearchCard, Text} from '../../components';
 import {getCitiesByName} from '../../services';
 import useColors from '../../hooks/useColors';
 
-import {CitiesProps, CitiesStored} from '../../shared/interfaces';
-import {getDataStorage} from '../../utils/storage';
+import {CitiesProps} from '../../shared/interfaces';
+import useDataStorage from '../../hooks/useDataStorage';
 
 const Search: React.FC = () => {
   const getThemeColors = useColors();
   const [isEmptySearch, setEmptySearch] = useState<boolean>(true);
-  const [citiesDataStored, setCitiesStored] = useState<
-    CitiesStored[] | null | undefined
-  >(null);
   const navigation = useNavigation();
+  const {citiesAdded} = useDataStorage();
 
   const {
     mutateAsync: mutateCities,
@@ -42,21 +40,8 @@ const Search: React.FC = () => {
     [isEmptySearch],
   );
 
-  const getCitiesStored = async () => {
-    try {
-      const cities = await getDataStorage<CitiesStored[]>('@cities');
-      setCitiesStored(cities);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    getCitiesStored();
-  }, []);
-
   const renderCityItem = ({item: data}: {item: CitiesProps}) => (
-    <SearchCard data={data} citiesDataStored={citiesDataStored} />
+    <SearchCard data={data} citiesDataStored={citiesAdded} />
   );
 
   return (
