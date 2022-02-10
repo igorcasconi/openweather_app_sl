@@ -23,6 +23,9 @@ const Card: React.FC<ColumnProps> = ({children, ...props}) => (
 
 const CardComponent = styled(Column)`
   elevation: 2;
+  shadow-opacity: 0.2;
+  shadow-radius: 4px;
+  shadow-offset: 0px 2px;
 `;
 
 export default Card;
