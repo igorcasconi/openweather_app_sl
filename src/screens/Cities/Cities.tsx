@@ -9,8 +9,13 @@ import {getCitiesByDistance} from '../../services';
 import {getDataStorage} from '../../utils/storage';
 import {weatherRouteStack} from '../../navigators/NavigationRoutes';
 
-import {CitiesStored, CurrentWeatherDataProps} from '../../shared/interfaces';
+import {
+  CitiesStored,
+  CurrentWeatherDataProps,
+  FavoriteCitiesProps,
+} from '../../shared/interfaces';
 import {RouteStackParamsProps} from '../../shared/types/routes';
+import {setItemToTopArray} from '../../utils/ArraysAndObjects';
 
 const Cities: React.FC = () => {
   const route = useRoute<RouteProp<RouteStackParamsProps, 'Cities'>>();
@@ -19,6 +24,7 @@ const Cities: React.FC = () => {
     [],
   );
   const [citiesRegistered, setCities] = useState<CitiesStored[] | null>(null);
+  const [isClickedLike, setClickLike] = useState<boolean>(false);
   const {mutateAsync: mutateWeatherCities, isLoading: isGettingWeather} =
     useMutation(getCitiesByDistance);
   const getThemeColors = useColors();
@@ -68,9 +74,38 @@ const Cities: React.FC = () => {
     }
   };
 
-  const renderWeatherCity = ({item}: {item: CurrentWeatherDataProps}) => (
-    <WeatherCard data={item} />
-  );
+  const reorderCitiesByLike = async (
+    favoriteCitiesData?: FavoriteCitiesProps[],
+  ) => {
+    if (!favoriteCitiesData) {
+      return;
+    }
+
+    favoriteCitiesData?.forEach(favoriteCity => {
+      const reorderWeatherCities = setItemToTopArray(
+        weatherCities,
+        favoriteCity.cityID,
+        'id',
+      );
+      reorderWeatherCities && setWeatherCities(reorderWeatherCities);
+    });
+    setClickLike(false);
+  };
+
+  const favoriteCitiesHandler = async () => {
+    if (!isClickedLike) {
+      return;
+    }
+
+    try {
+      const favoriteCitiesStorage = await getDataStorage<FavoriteCitiesProps[]>(
+        '@favorite_cities',
+      );
+      reorderCitiesByLike(favoriteCitiesStorage);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     if (!citiesRegistered) {
@@ -81,9 +116,22 @@ const Cities: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [citiesRegistered]);
 
+  const renderWeatherCity = ({item}: {item: CurrentWeatherDataProps}) => (
+    <WeatherCard data={item} setClickLike={setClickLike} />
+  );
+
   useEffect(() => {
     getCitiesStored();
   }, [route.params?.shouldUpdateList]);
+
+  useEffect(() => {
+    if (!isClickedLike) {
+      return;
+    }
+
+    favoriteCitiesHandler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isClickedLike]);
 
   if (isGettingWeather) {
     return (

@@ -38,3 +38,21 @@ export const clearDataStorage = async (key: string) => {
     console.log(err);
   }
 };
+
+export const removeDataStorage = async <T>(
+  key: string,
+  value: any,
+  arrayKey: keyof T,
+) => {
+  try {
+    const arrayData = await getDataStorage<T>(key);
+    //@ts-ignore
+    const arrayFiltered = arrayData.filter(
+      (item: T) => item[arrayKey] !== value,
+    );
+    const parsedJSONArray = JSON.stringify(arrayFiltered);
+    await AsyncStorage.setItem(key, parsedJSONArray);
+  } catch (err) {
+    console.log(err);
+  }
+};
