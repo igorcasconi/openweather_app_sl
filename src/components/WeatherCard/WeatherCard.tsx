@@ -18,17 +18,25 @@ import {
 import {Button} from '../Button';
 import {removeDataStorage, setStorageArrayData} from '../../utils/storage';
 import useDataStorage from '../../hooks/useDataStorage';
+import {weatherRouteStack} from '../../navigators/NavigationRoutes';
+import {useNavigation} from '@react-navigation/native';
 
 interface WeatherCardProps {
-  setClickLike: Dispatch<SetStateAction<boolean>>;
+  setClickLike?: Dispatch<SetStateAction<boolean>>;
   data?: CurrentWeatherDataProps;
+  isCurrentWeather?: boolean;
 }
 
-const WeatherCard: React.FC<WeatherCardProps> = ({data, setClickLike}) => {
+const WeatherCard: React.FC<WeatherCardProps> = ({
+  data,
+  setClickLike,
+  isCurrentWeather,
+}) => {
   const getThemeColors = useColors();
   const [likedCity, setLikeCity] = useState<boolean>(false);
   const [initialLoadFavorite, setLoadFavorite] = useState<boolean>(true);
   const {favoriteCities} = useDataStorage(initialLoadFavorite);
+  const navigation = useNavigation<weatherRouteStack>();
 
   const likeCityHandler = async (liked: boolean) => {
     if (!liked) {
@@ -37,14 +45,14 @@ const WeatherCard: React.FC<WeatherCardProps> = ({data, setClickLike}) => {
         data?.id,
         'cityID',
       );
-      setClickLike(true);
+      setClickLike && setClickLike(true);
       return setLikeCity(false);
     }
     await setStorageArrayData<FavoriteCitiesProps>('@favorite_cities', {
       cityID: data?.id,
     });
     setLikeCity(true);
-    setClickLike(true);
+    setClickLike && setClickLike(true);
   };
 
   const favoriteCitiesHandler = async () => {
@@ -52,12 +60,12 @@ const WeatherCard: React.FC<WeatherCardProps> = ({data, setClickLike}) => {
       favoriteCity => favoriteCity.cityID === data?.id,
     );
     setLikeCity(!!foundLikedCity);
-    setClickLike(!!foundLikedCity);
+    setClickLike && setClickLike(!!foundLikedCity);
     setLoadFavorite(false);
   };
 
   useEffect(() => {
-    if (!favoriteCities.length) {
+    if (!favoriteCities.length && !isCurrentWeather) {
       return;
     }
     favoriteCitiesHandler();
@@ -66,52 +74,58 @@ const WeatherCard: React.FC<WeatherCardProps> = ({data, setClickLike}) => {
 
   return (
     <Card height={140}>
-      <Row justifyContent="space-between">
-        <Column>
-          <Row width={1}>
-            <Text fontSize={24} color="black" letterSpacing={0.25}>
-              {data?.name}
-            </Text>
-          </Row>
-          <Row width={1} mt="2px">
-            <Text fontSize={14} color="black" letterSpacing={0.25}>
-              {getNormalizeCountryNames(data?.sys.country)}
-            </Text>
-          </Row>
-        </Column>
-        <Column>
-          <Row width={1} mt={10}>
-            <Text fontSize={34} color="orange" letterSpacing={0.25}>
-              {data?.main.temp.toFixed(0)}º
-            </Text>
-          </Row>
-        </Column>
-      </Row>
-      <Row width={1} mt={13}>
-        <Text fontSize={14} color="orange" letterSpacing={0.25}>
-          {data?.weather[0].description &&
-            capitalizeFirstLetter(data?.weather[0].description)}
-        </Text>
-      </Row>
-      <Row width={1} mt="2px" mb={14} justifyContent="space-between">
-        <Column>
-          <Text fontSize={12} color="black" letterSpacing={0.25}>
-            {data?.main.temp_min.toFixed(0)}º - {data?.main.temp_max.toFixed(0)}
-            º
+      <Button
+        backgroundColor="transparent"
+        onPress={() => navigation.navigate('Details', {data: data})}>
+        <Row width={1} justifyContent="space-between">
+          <Column>
+            <Row width={1}>
+              <Text fontSize={24} color="black" letterSpacing={0.25}>
+                {data?.name}
+              </Text>
+            </Row>
+            <Row width={1} mt="2px">
+              <Text fontSize={14} color="black" letterSpacing={0.25}>
+                {data?.sys.country
+                  ? getNormalizeCountryNames(data?.sys.country)
+                  : data?.dt}
+              </Text>
+            </Row>
+          </Column>
+          <Column>
+            <Row width={1} mt={10}>
+              <Text fontSize={34} color="orange" letterSpacing={0.25}>
+                {data?.main.temp.toFixed(0)}º
+              </Text>
+            </Row>
+          </Column>
+        </Row>
+        <Row width={1} mt={13}>
+          <Text fontSize={14} color="orange" letterSpacing={0.25}>
+            {data?.weather[0].description &&
+              capitalizeFirstLetter(data?.weather[0].description)}
           </Text>
-        </Column>
-        <Column mt={-20} height={60} width={60} mr={10}>
-          <Button
-            backgroundColor="transparent"
-            onPress={() => likeCityHandler(!likedCity)}>
-            <AntDesign
-              name={likedCity ? 'heart' : 'hearto'}
-              color={getThemeColors('redRibbon')}
-              size={25}
-            />
-          </Button>
-        </Column>
-      </Row>
+        </Row>
+        <Row width={1} mt="2px" mb={14} justifyContent="space-between">
+          <Column>
+            <Text fontSize={12} color="black" letterSpacing={0.25}>
+              {data?.main.temp_min.toFixed(0)}º -{' '}
+              {data?.main.temp_max.toFixed(0)}º
+            </Text>
+          </Column>
+          <Column mt={-20} height={60} width={60} mr={10}>
+            <Button
+              backgroundColor="transparent"
+              onPress={() => likeCityHandler(!likedCity)}>
+              <AntDesign
+                name={likedCity ? 'heart' : 'hearto'}
+                color={getThemeColors('redRibbon')}
+                size={25}
+              />
+            </Button>
+          </Column>
+        </Row>
+      </Button>
     </Card>
   );
 };

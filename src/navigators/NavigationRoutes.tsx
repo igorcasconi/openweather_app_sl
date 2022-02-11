@@ -7,7 +7,7 @@ import {
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 
-import {Cities, Search} from '../screens';
+import {Cities, Search, Details} from '../screens';
 import useColors from '../hooks/useColors';
 import {Button} from '../components';
 
@@ -56,6 +56,23 @@ const NavigationRoutes = () => {
         options={{
           ...options,
           headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Details"
+        component={Details}
+        options={{
+          ...options,
+          headerTitle: 'Detalhes',
+          headerLeft: () => (
+            <Button
+              backgroundColor="transparent"
+              ml={-18}
+              mt="-3px"
+              onPress={() => navigation.goBack()}>
+              <MaterialIcons name="chevron-left" color="white" size={30} />
+            </Button>
+          ),
         }}
       />
     </Stack.Navigator>

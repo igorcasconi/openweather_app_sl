@@ -6,3 +6,4 @@ export * from './Button';
 export * from './Card';
 export * from './WeatherCard';
 export * from './SearchCard';
+export * from './ForecastCard';

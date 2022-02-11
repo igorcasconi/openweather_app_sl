@@ -33,14 +33,16 @@ const Cities: React.FC = () => {
   );
 
   const clearParams = () => {
-    navigation.setParams({shouldUpdateList: false});
+    navigation.setParams({
+      shouldUpdateList: false,
+      removedCityID: undefined,
+    });
   };
 
   const cityHasLoaded = (city: CitiesStored) => {
     if (!weatherCities.length) {
       return false;
     }
-
     const foundCity = weatherCities.find(weatherCity => {
       return (
         weatherCity.coord.lat === city.latitude &&
@@ -50,22 +52,39 @@ const Cities: React.FC = () => {
     return !!foundCity;
   };
 
-  const getWeatherCities = async (city: CitiesStored) => {
-    try {
-      const foundCity = cityHasLoaded(city);
-      if (foundCity) {
-        return;
-      }
-
-      const weatherCityData = await mutateWeatherCities({
-        latitude: city.latitude,
-        longitude: city.longitude,
-      });
-      setWeatherCities(cities => [...cities, weatherCityData]);
-      route.params?.shouldUpdateList && clearParams();
-    } catch (err) {
-      console.log(err);
+  const weatherCitiesUpdateHandler = (removedCityID?: number) => {
+    if (!removedCityID) {
+      return;
     }
+
+    const newWeatherCities = weatherCities.filter(
+      weatherCity => weatherCity.cityID !== removedCityID,
+    );
+    setWeatherCities(newWeatherCities);
+    clearParams();
+  };
+
+  const getWeatherCities = (cities: CitiesStored[]) => {
+    cities?.forEach(async city => {
+      try {
+        const foundCity = cityHasLoaded(city);
+        if (foundCity) {
+          return;
+        }
+
+        const weatherCityData = await mutateWeatherCities({
+          latitude: city.latitude,
+          longitude: city.longitude,
+        });
+        const newWeatherCityData = {...weatherCityData, cityID: city.cityID};
+        setWeatherCities(weatherCity => {
+          return [...weatherCity, newWeatherCityData];
+        });
+        route.params?.shouldUpdateList && clearParams();
+      } catch (err) {
+        console.log(err);
+      }
+    });
   };
 
   const reorderCitiesByLike = async (
@@ -86,14 +105,27 @@ const Cities: React.FC = () => {
     setClickLike(false);
   };
 
-  useEffect(() => {
-    if (!citiesAdded) {
-      return;
+  const setCitiesOnState = async () => {
+    if (!citiesAdded || !citiesAdded?.length) {
+      route.params?.shouldUpdateList && clearParams();
+      return setWeatherCities([]);
     }
 
-    citiesAdded.forEach(city => getWeatherCities(city));
+    getWeatherCities(citiesAdded);
+  };
+
+  useEffect(() => {
+    setCitiesOnState();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [citiesAdded]);
+
+  useEffect(() => {
+    if (!route.params?.removedCityID) {
+      return;
+    }
+    weatherCitiesUpdateHandler(route.params?.removedCityID);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [route.params?.removedCityID]);
 
   useEffect(() => {
     if (!favoriteCities) {
@@ -117,7 +149,7 @@ const Cities: React.FC = () => {
   }
 
   return !!weatherCities?.length ? (
-    <Column width={1} flex={1} mb={10} p={16}>
+    <Column width={1} flex={1} px={16} pt={16}>
       <FlatList
         data={weatherCities}
         keyExtractor={(item: CurrentWeatherDataProps, index: number) =>
