@@ -29,6 +29,7 @@ const Details: React.FC = () => {
   useEffect(() => {
     navigation.setOptions({
       headerTitle: cityData?.name,
+      title: cityData?.name,
       headerRight: () => <DeleteButton cityStoreID={cityData?.cityID} />,
     });
 

@@ -20,6 +20,7 @@ import {removeDataStorage, setStorageArrayData} from '../../utils/storage';
 import useDataStorage from '../../hooks/useDataStorage';
 import {weatherRouteStack} from '../../navigators/NavigationRoutes';
 import {useNavigation} from '@react-navigation/native';
+import {Platform} from 'react-native';
 
 interface WeatherCardProps {
   setClickLike?: Dispatch<SetStateAction<boolean>>;
@@ -37,6 +38,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
   const [initialLoadFavorite, setLoadFavorite] = useState<boolean>(true);
   const {favoriteCities} = useDataStorage(initialLoadFavorite);
   const navigation = useNavigation<weatherRouteStack>();
+  const isAndroid = Platform.OS === 'android';
 
   const likeCityHandler = async (liked: boolean) => {
     if (!liked) {
@@ -73,7 +75,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
   }, [favoriteCities]);
 
   return (
-    <Card height={140}>
+    <Card height={140} pt={isAndroid ? '4px' : '10px'}>
       <Button
         backgroundColor="transparent"
         onPress={() => navigation.navigate('Details', {data: data})}>
