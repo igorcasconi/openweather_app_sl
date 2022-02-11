@@ -11,6 +11,7 @@ const useDataStorage = (
   const [favoriteCities, setFavoriteCities] = useState<FavoriteCitiesProps[]>(
     [],
   );
+
   const getCitiesStored = async () => {
     try {
       const cities = await getDataStorage<CitiesStored[]>('@cities');
@@ -43,7 +44,12 @@ const useDataStorage = (
     getFavoriteCities();
   }, [isClickedLike]);
 
-  return {getCitiesStored, getFavoriteCities, citiesAdded, favoriteCities};
+  return {
+    getCitiesStored,
+    getFavoriteCities,
+    citiesAdded,
+    favoriteCities,
+  };
 };
 
 export default useDataStorage;
