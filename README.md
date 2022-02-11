@@ -2,6 +2,48 @@
 
 O aplicativo consiste em exibir os dados climáticos de cidades desejadas, podendo exibir uma lista com as suas cidades adicionadas e com detalhes dos próximos 7 dias.
 
+## Executar o aplicativo
+
+Para começar, após clonar o repositório em sua máquina, deve baixar a pasta `node_modules` na raiz do projeto:
+
+```sh
+yarn install
+```
+ou
+```sh
+yarn
+```
+
+### Android
+
+Para executar o projeto, com um emulador já configurado com o Android Studio ou com seu dispositivo físico conectado em sua máquina preparado para executar, realizar o seguinte comando:
+
+```sh
+yarn android
+```
+
+### iOS
+
+Para o iOS, será necessário executar pelo XCode, pela CLI do react-native apresentou problemas para executar, com bastante pesquisa ainda não foi possível identificar para corrigir, então segue o passo a passo para executar pelo XCode:
+
+Primeiro deve-se acessar a pasta `ios` do projeto e instalar os Pods:
+
+```sh
+yarn pod-install
+```
+ou
+```sh
+cd ios && pod install & cd ..
+```
+
+Finalizado a instalação dos Pods, agora é so abrir o arquivo workspace do iOS no XCode. Então ao abrir o XCode em sua máquina, selecionar o arquivo no seguinte caminho:
+```
+openWeatherApp/ios/openWeatherApp.xcworkspace
+```
+
+Após o projeto ser indexado e totalmente carregado dentro do XCode, aperte o botão `Run` para iniciar a aplicação no emulador do iOS.
+
+
 ## API's
 
 Foram utilizadas duas API's para contribuir na construção do aplicativo:
